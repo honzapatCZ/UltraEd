@@ -93,6 +93,7 @@ namespace UltraEd
                 ActorMenu();
                 ViewMenu();
                 GizmoMenu();
+                LayoutMenu();
                 ImGui::EndMainMenuBar();
             }
 
@@ -113,7 +114,7 @@ namespace UltraEd
             LoadSceneModal();
 
             //ThemeEditor();
-            //ImGui::ShowDemoWindow();
+            ImGui::ShowDemoWindow();
         }
         ImGui::End();
         ImGui::EndFrame();
@@ -345,6 +346,14 @@ namespace UltraEd
             }
         }
 
+    }
+
+    void Gui::Toolbar()
+    {   
+        ImGui::Button("Toolbar goes here", ImVec2(0, 37));
+        ImGui::SameLine();
+        bool val = true;
+        Gui_Widgets::ToggleButton("Ahoj", &val);
     }
 
     void Gui::ThemeEditor() {
@@ -716,6 +725,35 @@ namespace UltraEd
         }
     }
 
+    void Gui::LayoutMenu() {
+        if (ImGui::BeginMenu("Layout"))
+        {
+            if (ImGui::MenuItem("Default"))
+            {
+                ImGui::LoadIniSettingsFromDisk("imgui.ini");
+            }
+            std::string path = "./Layouts";
+            std::filesystem::create_directory(path);
+
+            for (const auto& entry : std::filesystem::directory_iterator(path))
+            {
+                if (ImGui::MenuItem(entry.path().filename().string().c_str()))
+                {
+                    ImGui::LoadIniSettingsFromDisk(entry.path().string().c_str());
+                }
+            }
+
+            ImGui::Separator();
+
+            if (ImGui::MenuItem("Save New"))
+            {
+                
+            }
+
+            ImGui::EndMenu();
+        }
+    }
+
     void Gui::SceneGraph()
     {
         if (ImGui::Begin(ICON_FK_TH_LIST" Scene Graph", 0, ImGuiWindowFlags_HorizontalScrollbar))
@@ -744,6 +782,7 @@ namespace UltraEd
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
         if (ImGui::Begin(ICON_FK_TH" Scene View", 0, ImGuiWindowFlags_NoScrollbar))
         {
+            Toolbar();
             if (ImGui::IsWindowHovered())
             {
                 const auto mousePos = ImGui::GetMousePos();

@@ -30,6 +30,7 @@
     <ClCompile Include="Gizmo.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Gui.cpp" />
+    <ClCompile Include="Gui_Widgets.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -71,6 +72,7 @@
     <ClInclude Include="Gui.h" />
     <ClInclude Include="font-fk.h" />
     <ClInclude Include="font-roboto.h" />
+    <ClInclude Include="Gui_Widgets.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelPreviewer.h" />

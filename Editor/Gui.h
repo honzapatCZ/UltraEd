@@ -16,6 +16,7 @@
 #include "RenderDevice.h"
 #include "font-fk.h"
 #include "font-roboto.h"
+#include "Gui_Widgets.h"
 
 namespace UltraEd
 {
@@ -36,13 +37,14 @@ namespace UltraEd
     private:
         void PrepareFrame();
         void LoadFonts();
-
         void CustomStyle(ImGuiStyle* style);
         void DarkColors();
         void LightColors();
-
+        void LayoutMenu();
         void ThemeEditor();
         void LoadColorTheme();
+        void Toolbar();
+
         void ReleaseSceneTexture();
         void FileMenu();
         void EditMenu();
